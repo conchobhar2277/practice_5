@@ -7,22 +7,54 @@ Your answers should be execedingly short. It is most efficient to answer the que
 **Git**:
 1. Paste exactly the output of `git remote -v`
 
+origin  git@github.com:conchobhar2277/practice_5.git (fetch)
+origin  git@github.com:conchobhar2277/practice_5.git (push)
+
 **Makefile**:
 1. What target compiles `orderlogs` with sufficient debug flags
+
+trike
+
 2. Which target verifies your output is identical to the given reference?
+
+stego
 
 **Linux CLI**:
 1. At least one testcase in the testcases file fails, paste a full, single  command that runs a failing testcase:
 
+bin/orderlogs -f testcases/all_new
+
 **GDB**:
 1. When running a failing testcase, give a line where the program segfault at in its given state. Paste the line.
+
+46              node1 = node1->next;
+
 2. What is the call stack when the program segfaults in its given state? Paste the call stack output by GDB.
+
+0x00005555555557db in merge (node1=0x0, node2=0x55555555b4f0) at reorder.c:46
+46              node1 = node1->next;
+
 3. After fixing this first issue, the program may segfault in a different place. If this is the case, paste that line and the corresponding callstack as well.
+
+0x0000555555555711 in find_news (node=0x7fffffffc428) at reorder.c:17
+17          while (itr->age == OLD) 
+
+0x0000555555555818 in merge (node1=0x55555555b4b0, node2=0x0) at reorder.c:50
+50              node2 = node2->next;
 
 **C**:
 1. Give a logic error that caused the program to segfault. Note, "dereferencing null" is not sufficient.
+
+Program was trying to reference a null area of memory
+
 2. Directly following this bug, how did you resolve the error?
+
+Added a condition to the loop that checked if node1 was null
+
 3. After fixing this first issue, the program may have another logic error that causes a segfault. If this is the case, explain the error and how you resolved it as well.
+
+There were two more bugs. Both having to do with trying to access memory that couldn't be accessed, and both being fixed by adding
+checks to each loop if(node2...) if(itr...) to make sure program wasn't trying to accidentally access this memory
 
 ## [IMPORTANT] After you SSH into a lab machine: Note that
 - **ALL git commands must be in the command line.**
